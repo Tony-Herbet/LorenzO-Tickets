@@ -1,0 +1,31 @@
+.field {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  margin: 1rem auto;
+
+  .label {
+    margin-right: 0.5em;
+    margin-top: 0.5em;
+  }
+
+  .input {
+    border: $c-text solid 1px;
+    border-radius: 15px;
+    margin-top: 0.5em;
+    padding: 0.5rem;
+
+    &::placeholder {
+      color: $c-selected;
+    }
+
+    &:focus {
+      outline: none;
+      border: $c-status-underway solid 1px;
+    }
+  }
+
+  .add-ticket-field {
+    border: $c-frame solid 1px;
+  }
+}

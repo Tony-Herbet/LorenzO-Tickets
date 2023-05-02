@@ -1,0 +1,69 @@
+.active {
+  color: $c-status-underway;
+}
+
+.nav-header {
+  width: 100vw;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  position: fixed;
+  height: calc(100vh - $s-header);
+  top: $s-header;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-color: $c-text;
+  z-index: 9999999;
+  color: $c-frame;
+
+  .logoutBtn {
+    margin-top: 2rem;
+    background-color: $c-status-closed;
+    color: $c-frame;
+    padding: 0.5rem 1rem;
+    border-radius: 20px;
+    transition: all 0.3s ease-in-out;
+
+    &:hover {
+      background-color: $c-selected;
+    }
+  }
+}
+
+/*----------------------------------------------------------------------------------
+-------------------------------------  TABLETTE ------------------------------------
+----------------------------------------------------------------------------------*/
+
+@media (min-width: 599px) {
+}
+
+@media (min-width: 899px) {
+  .nav-header {
+    height: $s-header;
+    margin-top: 0;
+    flex-direction: row;
+    position: unset;
+
+    .logoutBtn {
+      position: absolute;
+      top: 0.5rem;
+      right: 1rem;
+      margin-top: 0;
+    }
+  }
+}
+
+/*----------------------------------------------------------------------------------
+-------------------------------------  DESKTOP -------------------------------------
+----------------------------------------------------------------------------------*/
+
+@media (min-width: 1199px) {
+  .nav-header {
+    .logoutBtn {
+      top: 1rem;
+      right: 1rem;
+    }
+  }
+}

@@ -1,0 +1,30 @@
+"Ajouter/modifier/supprimer des données"
+type Mutation {
+  # ---------------------------------  Ticket  ----------------------------------
+  createTicket(input: TicketInput): Ticket
+  # readTicket(id: PositiveInt!): Ticket
+  # updateTicket(id: PositiveInt!, input: TicketInput): Ticket
+  deleteTicket(id: PositiveInt!): Boolean
+
+  # # ---------------------------------  Client  ----------------------------------
+  # createClient(input: ClientInput): Client
+  # readClient(id: PositiveInt!): Client
+  # updateClient(id: PositiveInt!, input: ClientInput): Client
+  # deleteClient(input: ClientInput): Client
+
+  # # ---------------------------------  Message  ----------------------------------
+  createMessage(input: MessageInput): Message
+  # readMessage(id: PositiveInt!): Message
+  # updateMessage(id: PositiveInt!, input: MessageInput): Message
+  # deleteMessage(input: MessageInput): Message
+
+  # # ---------------------------------  Employee  ----------------------------------
+  # createEmployee(input: EmployeeInput): Employee
+  # readEmployee(id: PositiveInt!): Employee
+  updateEmployeePassword(id: PositiveInt!, input: EmployeePasswordInput): EmployeeUpdate
+  # deleteEmployee(input: EmployeeInput): Employee
+
+  # # ---------------------------------  TicketEmployee  ---------------------------------
+  addTicketToEmployee(input: TicketEmployeeInput): TicketEmployee
+  removeTicketToEmployee(input: TicketEmployeeInput): Boolean
+}

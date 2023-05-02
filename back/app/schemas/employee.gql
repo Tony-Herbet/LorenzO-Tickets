@@ -1,0 +1,48 @@
+enum Role {
+  admin
+  lead
+  intervenor
+}
+
+enum UserType {
+  client
+  employee
+}
+
+type Employee {
+  id: PositiveInt!
+  firstname: String!
+  lastname: String!
+  email: EmailAddress!
+  password: String!
+  role: Role!
+  tickets: [Ticket!]!
+  created_at: DateTime!
+  updated_at: DateTime
+}
+
+type EmployeeUpdate {
+  id: PositiveInt
+  firstname: String
+  lastname: String
+  email: EmailAddress
+  role: Role
+  created_at: DateTime!
+  updated_at: DateTime
+}
+
+input EmployeePasswordInput {
+  password: String!
+}
+
+"""
+Le token comprends les informations employee
+- firstname
+- lastname
+- email
+- ip
+"""
+type Token {
+  token: String!
+  expiresIn: String!
+}

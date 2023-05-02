@@ -1,0 +1,18 @@
+enum UserType {
+  client
+  employee
+}
+
+type Client {
+  id: PositiveInt!
+  email: EmailAddress!
+  company: String!
+  created_at: DateTime!
+  updated_at: DateTime
+  tickets: [Ticket!]!
+}
+
+input ClientInput {
+  email: EmailAddress!
+  company: String!
+}

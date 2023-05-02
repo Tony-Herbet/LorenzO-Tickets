@@ -1,0 +1,280 @@
+@endpoint = http://localhost:{{$dotenv PORT}}/graphql
+
+### Récupération de la liste des clients
+POST {{ endpoint }}
+Content-Type: application/json
+X-REQUEST-TYPE: GraphQL
+
+query GetAllClients{
+  getAllClients {
+    id
+    email
+    company
+    created_at
+    updated_at
+  }
+}
+
+### Récupération de la liste des messages
+POST {{ endpoint }}
+Content-Type: application/json
+X-REQUEST-TYPE: GraphQL
+
+query GetAllMessages{
+  getAllMessages {
+    id
+    content
+    ticket_id
+  }
+}
+
+### Récupération de tous les employee
+POST {{ endpoint }}
+Content-Type: application/json
+X-REQUEST-TYPE: GraphQL
+
+query GetAllEmployees{
+  getAllEmployees {
+    id
+    email
+    firstname
+    lastname
+    password
+    role
+    created_at
+    updated_at
+  }
+}
+
+### Récupération de la liste de tous les tickets
+POST {{ endpoint }}
+Content-Type: application/json
+X-REQUEST-TYPE: GraphQL
+
+query GetAllTickets{
+  getAllTickets {
+    id
+    title
+    content
+    status
+    client_id
+    employees {
+      id
+      email
+    }
+    messages {
+      id
+      content
+    }
+    created_at
+    updated_at
+  }
+}
+
+### Récupération d'un ticket par son id
+POST {{ endpoint }}
+Content-Type: application/json
+X-REQUEST-TYPE: GraphQL
+
+query GetTicketById($id: Int!){
+  getTicketById(id: $id) {
+    id
+    title
+    content
+    status
+    client_id
+    created_at
+    updated_at
+    client {
+      id
+      email
+      company
+    }
+  }
+}
+
+{
+  "id": 3
+}
+
+### Récupération de tous les tickets d'un client
+POST {{ endpoint }}
+Content-Type: application/json
+X-REQUEST-TYPE: GraphQL
+
+query GetAllTicketsByClientId($id: Int!){
+  getAllTicketsByClientId(id: $id) {
+    id
+    title
+    content
+    status
+    client_id
+    created_at,
+    updated_at,
+  }
+}
+
+{
+  "id": 1
+}
+
+### Récupération de tous les messages d'un ticket
+POST {{ endpoint }}
+Content-Type: application/json
+X-REQUEST-TYPE: GraphQL
+
+query GetAllMessagesByTicketId($id: Int!){
+  getAllMessagesByTicketId(id: $id) {
+    id
+    content
+    ticket_id
+  }
+}
+
+{
+  "id": 1
+}
+
+### Récupération de tous les employees d'un ticket
+POST {{ endpoint }}
+Content-Type: application/json
+X-REQUEST-TYPE: GraphQL
+
+query GetAllEmployeesByTicketId($ticket_id: Int!){
+  getAllEmployeesByTicketId(ticket_id: $ticket_id) {
+    id
+    email
+    firstname
+    lastname
+    role
+  }
+}
+
+{
+  "ticket_id": 6
+}
+
+### Récupération de tous les tickets d'un employee
+POST {{ endpoint }}
+Content-Type: application/json
+X-REQUEST-TYPE: GraphQL
+
+query GetAllTicketsByEmployeeId($employee_id: Int!){
+  getAllTicketsByEmployeeId(employee_id: $employee_id) {
+    id
+    title
+    content
+    status
+    client_id
+  }
+}
+
+{
+  "employee_id": 1
+}
+
+### Authentification pour un employé
+POST {{ endpoint }}
+Content-Type: application/json
+X-REQUEST-TYPE: GraphQL
+
+query signin($email: EmailAddress!, $password: String, $userType: UserType!) {
+  signin(email: $email, password: $password, userType: $userType) {
+    id
+    firstname
+    lastname
+    email
+    role
+    userType
+    company
+    token {
+      token
+      expiresIn
+    }
+    created_at
+    updated_at
+  }
+}
+
+{
+  "email": "client1@test.test",
+  "password": "",
+  "userType": "client"
+}
+
+### Creation d'un ticket
+POST {{ endpoint }}
+Content-Type: application/json
+X-REQUEST-TYPE: GraphQL
+
+mutation CreateTicket($input: TicketInput) {
+  createTicket(input: $input){
+    id
+    title
+    content
+    client_id 
+  }
+}
+
+{
+  "input": {
+    "title": "Titre nouveau ticket",
+    "content": "Contenu du nouveau ticket",
+    "status": "open",
+    "client_id": 1
+  }
+}
+
+### Ajout d'un employee sur un ticket
+POST {{ endpoint }}
+Content-Type: application/json
+X-REQUEST-TYPE: GraphQL
+
+mutation addTicketToEmployee($input: TicketEmployeeInput) {
+  addTicketToEmployee(input: $input){
+    id
+    ticket_id
+    employee_id
+  }
+}
+
+{
+  "input": {
+    "ticket_id": 1,
+    "employee_id": 1
+  }
+}
+
+### Retirer un employee d'un ticket
+POST {{ endpoint }}
+Content-Type: application/json
+X-REQUEST-TYPE: GraphQL
+
+mutation removeTicketToEmployee($input: TicketEmployeeInput) {
+  removeTicketToEmployee(input: $input)
+}
+
+{
+  "input": {
+    "ticket_id": 1,
+    "employee_id": 1
+  }
+}
+
+### Mise a jour du password
+POST {{ endpoint }}
+Content-Type: application/json
+X-REQUEST-TYPE: GraphQL
+
+mutation updateEmployeePassword($id: PositiveInt!, $input: EmployeePasswordInput) {
+  updateEmployeePassword(id: $id, input: $input){
+    id
+  }
+}
+
+{
+  "id": 1,
+  "input": {
+    "password": "1234"
+  }
+}

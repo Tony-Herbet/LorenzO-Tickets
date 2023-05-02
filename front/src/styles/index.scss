@@ -1,0 +1,15 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&family=Roboto:wght@300;400;500;700&display=swap');
+
+// base
+@import 'base/reset', 'base/variables', 'base/global';
+
+// layout
+@import 'layout/header', 'layout/footer';
+
+// pages
+@import 'pages/connection', 'pages/GTCU', 'pages/addTicket', 'pages/home', 'pages/tickets', 'pages/employees',
+  'pages/clients', 'pages/messages', 'pages/profile', 'pages/ticket', 'pages/404', 'pages/403', 'pages/legalesMentions';
+
+// components
+@import 'components/headerNav', 'components/submitButton', 'components/field', 'components/roleChoiceButton',
+  'components/fieldLongText', 'components/table', 'components/loader';

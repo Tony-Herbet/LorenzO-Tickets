@@ -1,0 +1,90 @@
+.table-container {
+  width: auto;
+  padding: 10px 10px;
+  overflow-x: scroll;
+
+  .blue-status,
+  .yellow-status,
+  .red-status {
+    margin: 0 auto;
+    border-radius: 20px;
+    padding: 0.2rem 0;
+  }
+
+  .blue-status {
+    background-color: $c-status-closed;
+    color: $c-background;
+  }
+
+  .yellow-status {
+    background-color: $c-status-underway;
+    color: $c-text;
+  }
+
+  .red-status {
+    background-color: $c-status-open;
+    color: $c-background;
+  }
+
+  .table {
+    border-radius: 100px;
+    width: 100%;
+    border: 2px solid $c-selected;
+
+    thead {
+      border: solid 1px $c-blue-grey;
+      background-color: $c-text;
+      color: $c-background;
+
+      tr {
+        padding: 0.5rem 0;
+
+        th {
+          &:nth-child(n) {
+            // head du tableau
+            padding: 0.5rem 0;
+            border-right: solid 1px $c-blue-grey;
+          }
+        }
+      }
+    }
+
+    tbody {
+      td {
+        text-align: center;
+        border-left: 1px solid $c-blue-grey;
+        padding: 0.3rem;
+
+        &:nth-child(-n + 1) {
+          background-color: $c-text;
+          color: $c-background;
+          width: 60px;
+        }
+      }
+
+      tr:nth-child(even) {
+        border-top: 1px solid $c-blue-grey;
+        border-bottom: 1px solid $c-blue-grey;
+      }
+
+      .see,
+      .edit,
+      .delete {
+        font-size: 1.5rem;
+        cursor: pointer;
+      }
+
+      .blue {
+        color: $c-status-closed;
+      }
+
+      .yellow {
+        color: $c-status-underway;
+      }
+
+      .red {
+        color: $c-status-open;
+      }
+    }
+  }
+}
